@@ -5,11 +5,11 @@ import com.hello.designPattern.FactoryPattern.factory.QinCarFactory;
 
 public class FactoryClient {
     public static void main(String[] args) throws IllegalAccessException {
-        Car low = QinCarFactory.getCar("low");
-        Car middle = QinCarFactory.getCar("middle");
-        Car high = QinCarFactory.getCar("high");
-        low.print();
-        middle.print();
-        high.print();
+        Car han = QinCarFactory.getCar("han");
+        Car tang = QinCarFactory.getCar("tang");
+        Car qin = QinCarFactory.getCar("qin");
+        han.print();
+        tang.print();
+        qin.print();
     }
 }
