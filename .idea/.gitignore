@@ -9,4 +9,4 @@
 # out 过滤
 /out/
 .idea
-/target/
+/target/*
