@@ -6,6 +6,8 @@ import com.hello.designPattern.SingletonPattern.LazySingleton;
 import com.hello.designPattern.SingletonPattern.StaticNestSingleton;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -20,7 +22,8 @@ import java.util.concurrent.*;
 public class SingletonTest {
 
     /**
-     * 并发单例破坏
+     * 并发单例破坏：创建定长线程池，使用countDownLatch使得多个线程同时执行，
+     * 判断获取实例是否是同一个
      *
      * @author linmeng
      * @date 2022年3月29日 09:58
@@ -93,7 +96,50 @@ public class SingletonTest {
                 (enumSingletonFutureList.get(3).get()==enumSingletonFutureList.get(4).get()));
     }
 
-    <T> void print(@org.jetbrains.annotations.NotNull List<Future<T>> list){
+    /**
+     * 反射单例破坏
+     * https://blog.csdn.net/liuyingming910/article/details/42457265
+     * @author linmeng
+     * @date 2022年3月29日 11:13
+     * @return void
+     */
+    @Test
+    public void reflectDestroy() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        System.out.println("饿汉式单例反射测试");
+        EagerSingleton eagerSingleton1 = EagerSingleton.getInstance();
+        Constructor<EagerSingleton> declaredConstructor = EagerSingleton.class.getDeclaredConstructor();
+        declaredConstructor.setAccessible(true);
+        EagerSingleton eagerSingleton = declaredConstructor.newInstance();
+        System.out.println(eagerSingleton);
+        System.out.println(eagerSingleton1);
+        System.out.println(eagerSingleton == eagerSingleton1);
+        System.out.println("懒汉式单例反射测试");
+        LazySingleton lazySingleton1 = LazySingleton.getInstance();
+        Constructor<LazySingleton> lazySingletonConstructor = LazySingleton.class.getDeclaredConstructor();
+        lazySingletonConstructor.setAccessible(true);
+        LazySingleton lazySingleton = lazySingletonConstructor.newInstance();
+        System.out.println(lazySingleton1);
+        System.out.println(lazySingleton);
+        System.out.println(lazySingleton1 == lazySingleton);
+        System.out.println("内部类单例测试");
+        Class<StaticNestSingleton> staticNestSingletonClass = StaticNestSingleton.class;
+        Constructor<StaticNestSingleton> staticNestSingletonConstructor = staticNestSingletonClass.getDeclaredConstructor();
+        staticNestSingletonConstructor.setAccessible(true);
+        StaticNestSingleton staticNestSingleton = staticNestSingletonConstructor.newInstance();
+        StaticNestSingleton staticNestSingleton1 = StaticNestSingleton.getInstance();
+        System.out.println(staticNestSingleton);
+        System.out.println(staticNestSingleton1);
+        System.out.println(staticNestSingleton1 == staticNestSingleton);
+
+        System.out.println("枚举单例测试");
+        EnumSingleton enumSingleton = EnumSingleton.INSTANCE;
+        Constructor<EnumSingleton> enumSingletonConstructor = EnumSingleton.class.getDeclaredConstructor();
+        enumSingletonConstructor.setAccessible(true);
+        EnumSingleton enumSingleton1 = enumSingletonConstructor.newInstance();
+        System.out.println(enumSingleton == enumSingleton1);
+    }
+
+    <T> void print(List<Future<T>> list){
         list.forEach(s ->{
             try {
                 System.out.println(s.get().toString());
