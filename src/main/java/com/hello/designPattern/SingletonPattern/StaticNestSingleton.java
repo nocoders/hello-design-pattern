@@ -1,4 +1,4 @@
-package com.hello.designPattern.SingletonPattern.singleton;
+package com.hello.designPattern.SingletonPattern;
 
 /**
  * 静态内部类单例：外部类加载时不会加载内部类，只有在使用到内部类的时候虚拟机才会加载内部类
@@ -22,7 +22,7 @@ public class StaticNestSingleton {
      * @date 2021年11月9日 21:44
      * @return com.sword.www.designPattern.singleton.EagerSingleton
      */
-    public static StaticNestSingleton getStaticNestInstance(){
+    public static StaticNestSingleton getInstance(){
 
         return SingletonHolder.SINGLETON;
     }

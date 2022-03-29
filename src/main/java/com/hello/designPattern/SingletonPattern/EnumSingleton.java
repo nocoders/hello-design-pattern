@@ -1,4 +1,4 @@
-package com.hello.designPattern.SingletonPattern.singleton;
+package com.hello.designPattern.SingletonPattern;
 /**
  * https://www.cnblogs.com/happy4java/p/11206105.html
  * https://blog.csdn.net/weixin_48358336/article/details/120499442

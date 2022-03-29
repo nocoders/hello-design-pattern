@@ -1,4 +1,4 @@
-package com.hello.designPattern.SingletonPattern.singleton;
+package com.hello.designPattern.SingletonPattern;
 
 /**
  * 饿汉式单例：static关键字使得变量在类加载时就初始化，final关键字使得变量不可被修改
@@ -18,7 +18,7 @@ public class EagerSingleton {
      * @date 2021年11月9日 21:44
      * @return com.sword.www.designPattern.singleton.EagerSingleton
      */
-    public static EagerSingleton getEagerInstance(){
+    public static EagerSingleton getInstance(){
 
         return eagerSingleton;
     }

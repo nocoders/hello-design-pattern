@@ -1,4 +1,4 @@
-package com.hello.designPattern.SingletonPattern.singleton;
+package com.hello.designPattern.SingletonPattern;
 
 import java.util.Objects;
 
