@@ -1,5 +1,7 @@
 package com.hello.designPattern.SingletonPattern;
 
+import java.io.Serializable;
+
 /**
  * 静态内部类单例：外部类加载时不会加载内部类，只有在使用到内部类的时候虚拟机才会加载内部类
  *      保证了线程安全，单例的唯一性，延迟了类的实例化
@@ -8,7 +10,7 @@ package com.hello.designPattern.SingletonPattern;
  * @version 1.0
  * @date 2022年3月28日 17:00
  */
-public class StaticNestSingleton {
+public class StaticNestSingleton  implements Serializable {
 
     private StaticNestSingleton(){}
 

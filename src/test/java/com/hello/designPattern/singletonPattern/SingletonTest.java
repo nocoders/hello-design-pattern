@@ -4,8 +4,10 @@ import com.hello.designPattern.SingletonPattern.EagerSingleton;
 import com.hello.designPattern.SingletonPattern.EnumSingleton;
 import com.hello.designPattern.SingletonPattern.LazySingleton;
 import com.hello.designPattern.SingletonPattern.StaticNestSingleton;
+import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -137,6 +139,41 @@ public class SingletonTest {
         enumSingletonConstructor.setAccessible(true);
         EnumSingleton enumSingleton1 = enumSingletonConstructor.newInstance();
         System.out.println(enumSingleton == enumSingleton1);
+    }
+
+    /**
+     *
+     * 序列化破坏单例
+     * @author linmeng
+     * @date 2022年3月30日 15:07
+     * @return void
+     */
+    @Test
+    public void serializeDestroy(){
+        System.out.println("饿汉式模式");
+        EagerSingleton eagerSingleton = EagerSingleton.getInstance();
+        EagerSingleton deserializeEagerSingleton = serializeAndDeserialize(eagerSingleton);
+        System.out.println(eagerSingleton);
+        System.out.println(deserializeEagerSingleton);
+        System.out.println("懒汉式模式");
+        LazySingleton lazySingleton = LazySingleton.getInstance();
+        LazySingleton deserializeLazySingleton = serializeAndDeserialize(lazySingleton);
+        System.out.println(lazySingleton);
+        System.out.println(deserializeLazySingleton);
+        System.out.println("内部类模式");
+        StaticNestSingleton staticNestSingleton = StaticNestSingleton.getInstance();
+        StaticNestSingleton serializeAndDeserializeStaticNestSingleton = serializeAndDeserialize(staticNestSingleton);
+        System.out.println(staticNestSingleton);
+        System.out.println(serializeAndDeserializeStaticNestSingleton);
+        System.out.println("枚举式单例");
+        EnumSingleton enumSingleton = EnumSingleton.INSTANCE;
+        EnumSingleton serializeAndDeserializeEnumSingleton = serializeAndDeserialize(enumSingleton);
+        System.out.println(enumSingleton == serializeAndDeserializeEnumSingleton);
+    }
+
+    private <T extends Serializable> T serializeAndDeserialize(T singleton) {
+        byte[] eagerSingletonSerializeBytes = SerializationUtils.serialize(singleton);
+        return SerializationUtils.deserialize(eagerSingletonSerializeBytes);
     }
 
     <T> void print(List<Future<T>> list){

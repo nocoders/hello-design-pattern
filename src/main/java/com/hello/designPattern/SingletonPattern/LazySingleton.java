@@ -1,5 +1,6 @@
 package com.hello.designPattern.SingletonPattern;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Objects;
  * @version 1.0
  * @date 2022年3月28日 16:42
  */
-public class LazySingleton {
+public class LazySingleton  implements Serializable {
     private static volatile LazySingleton lazySingleton;
 
     private LazySingleton(){}
