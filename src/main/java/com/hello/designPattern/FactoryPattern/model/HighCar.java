@@ -2,11 +2,11 @@ package com.hello.designPattern.FactoryPattern.model;
 
 import com.hello.designPattern.FactoryPattern.interfaces.Car;
 
-public class TangCar implements Car{
+public class HighCar implements Car{
 
     @Override
     public Integer getPrice() {
-        return 60000;
+        return 65000;
     }
 
     @Override

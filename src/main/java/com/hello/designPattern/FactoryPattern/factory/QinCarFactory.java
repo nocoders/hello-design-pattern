@@ -1,20 +1,20 @@
 package com.hello.designPattern.FactoryPattern.factory;
 
 import com.hello.designPattern.FactoryPattern.interfaces.Car;
-import com.hello.designPattern.FactoryPattern.model.HanCar;
-import com.hello.designPattern.FactoryPattern.model.QinCar;
-import com.hello.designPattern.FactoryPattern.model.TangCar;
+import com.hello.designPattern.FactoryPattern.model.LowCar;
+import com.hello.designPattern.FactoryPattern.model.MiddleCar;
+import com.hello.designPattern.FactoryPattern.model.HighCar;
 
 public class QinCarFactory {
 
     public static Car getCar(String carType) throws IllegalAccessException {
         switch (carType) {
-            case "han":
-                return new HanCar();
-            case "tang":
-                return new TangCar();
-            case "qin":
-                return new QinCar();
+            case "low":
+                return new LowCar();
+            case "middle":
+                return new MiddleCar();
+            case "high":
+                return new HighCar();
             default:
                 throw new IllegalAccessException("param error");
         }

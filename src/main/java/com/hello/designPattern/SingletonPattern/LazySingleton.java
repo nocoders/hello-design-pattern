@@ -10,14 +10,15 @@ import java.util.Objects;
  * @version 1.0
  * @date 2022年3月28日 16:42
  */
-public class LazySingleton  implements Serializable {
+public class LazySingleton implements Serializable {
     private static volatile LazySingleton lazySingleton;
 
-    private LazySingleton(){}
+    private LazySingleton() {
+    }
 
-    public static LazySingleton getInstance(){
+    public static LazySingleton getInstance() {
         if (Objects.isNull(lazySingleton)) {
-            synchronized (LazySingleton.class){
+            synchronized (LazySingleton.class) {
                 if (Objects.isNull(lazySingleton)) {
                     lazySingleton = new LazySingleton();
                 }
