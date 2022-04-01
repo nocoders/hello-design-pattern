@@ -14,6 +14,9 @@ public class LazySingleton implements Serializable {
     private static volatile LazySingleton lazySingleton;
 
     private LazySingleton() {
+        if (lazySingleton != null) {
+            throw new RuntimeException();
+        }
     }
 
     public static LazySingleton getInstance() {
@@ -25,6 +28,14 @@ public class LazySingleton implements Serializable {
             }
         }
 
+        return lazySingleton;
+    }
+    /**
+     * 防止序列化破坏单例
+     * @date 2022年4月1日 11:16
+     * @return java.lang.Object
+     */
+    public Object readResolve(){
         return lazySingleton;
     }
 }

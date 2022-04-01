@@ -24,12 +24,20 @@ public class StaticNestSingleton implements Serializable {
     /**
      * 直接返回
      *
-     * @return com.sword.www.designPattern.singleton.EagerSingleton
+     * @return com.sword.www.designPattern.singleton.StaticNestSingleton
      * @author linmeng
      * @date 2021年11月9日 21:44
      */
     public static StaticNestSingleton getInstance() {
 
+        return SingletonHolder.SINGLETON;
+    }
+    /**
+     * 防止序列化破坏单例
+     * @date 2022年4月1日 11:16
+     * @return java.lang.Object
+     */
+    public Object readResolve(){
         return SingletonHolder.SINGLETON;
     }
 }

@@ -9,9 +9,17 @@ import java.io.Serializable;
  * @date 2022年3月28日 16:55
  */
 public class EagerSingleton implements Serializable {
-    private static final EagerSingleton eagerSingleton = new EagerSingleton();
+    private static final EagerSingleton eagerSingleton;
 
-    private EagerSingleton(){}
+    static {
+        eagerSingleton = new EagerSingleton();
+    }
+
+    private EagerSingleton() {
+        if (eagerSingleton !=null){
+            throw new RuntimeException();
+        }
+    }
 
     /**
      *
@@ -22,6 +30,15 @@ public class EagerSingleton implements Serializable {
      */
     public static EagerSingleton getInstance(){
 
+        return eagerSingleton;
+    }
+
+    /**
+     * 防止序列化破坏单例
+     * @date 2022年4月1日 11:16
+     * @return java.lang.Object
+     */
+    public Object readResolve(){
         return eagerSingleton;
     }
 }
