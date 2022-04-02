@@ -176,6 +176,11 @@ public class SingletonTest {
         return SerializationUtils.deserialize(eagerSingletonSerializeBytes);
     }
 
+    /**
+     * 打印对象
+     * @param list
+     * @param <T>
+     */
     <T> void print(List<Future<T>> list){
         list.forEach(s ->{
             try {
