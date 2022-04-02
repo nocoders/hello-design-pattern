@@ -135,9 +135,15 @@ public class SingletonTest {
 
         System.out.println("枚举单例测试");
         EnumSingleton enumSingleton = EnumSingleton.INSTANCE;
-        Constructor<EnumSingleton> enumSingletonConstructor = EnumSingleton.class.getDeclaredConstructor();
+        Constructor<?>[] declaredConstructors = EnumSingleton.class.getDeclaredConstructors();
+        for (Constructor<?> constructor : declaredConstructors) {
+            System.out.println(constructor);
+        }
+        Constructor<?> enumSingletonConstructor = declaredConstructors[0];
+
+//        System.out.println(enumSingletonConstructor);
         enumSingletonConstructor.setAccessible(true);
-        EnumSingleton enumSingleton1 = enumSingletonConstructor.newInstance();
+        Object enumSingleton1 = enumSingletonConstructor.newInstance("INSTANCE",0);
         System.out.println(enumSingleton == enumSingleton1);
     }
 
