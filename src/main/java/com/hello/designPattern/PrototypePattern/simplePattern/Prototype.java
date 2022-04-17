@@ -1,4 +1,4 @@
-package com.hello.designPattern.PrototypePattern.registerPattern;
+package com.hello.designPattern.PrototypePattern.simplePattern;
 
 public interface Prototype extends Cloneable{
 

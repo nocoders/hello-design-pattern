@@ -1,6 +1,8 @@
-package com.hello.designPattern.PrototypePattern.registerPattern;
+package com.hello.designPattern.PrototypePattern.model;
 
-public class ConcretePrototype implements Prototype{
+import com.hello.designPattern.PrototypePattern.simplePattern.Prototype;
+
+public class ConcretePrototype2 implements Prototype {
 
     @Override
     public Prototype clone() {

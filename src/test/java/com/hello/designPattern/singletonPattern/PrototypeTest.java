@@ -1,7 +1,11 @@
 package com.hello.designPattern.singletonPattern;
 
+import com.hello.designPattern.PrototypePattern.model.*;
 import com.hello.designPattern.PrototypePattern.registerPattern.*;
+import com.hello.designPattern.PrototypePattern.simplePattern.Prototype;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.SerializationUtils;
 
 public class PrototypeTest {
 
@@ -25,5 +29,39 @@ public class PrototypeTest {
         Prototype prototype2 = PrototypeManager.getPrototype("2").clone();
         System.out.println(prototype);
         System.out.println(prototype2);
+    }
+
+    @Test
+    public void shallowCloning() throws CloneNotSupportedException {
+        Department department = new Department();
+        department.setName("互联网部门");
+        department.setDesc("互联网部门说明");
+        Person person = new Person();
+        person.setName("小明");
+        person.setAge(22);
+        person.setDepartment(department);
+
+//        Person person1 = (Person) person.clone();
+        Person person1 = new Person();
+        BeanUtils.copyProperties(person,person1);
+
+        System.out.println(person);
+        System.out.println(person1);
+    }
+    @Test
+    public void deepCloning() throws CloneNotSupportedException {
+        Department department = new Department();
+        department.setName("互联网部门");
+        department.setDesc("互联网部门说明");
+        Person person = new Person();
+        person.setName("小明");
+        person.setAge(22);
+        person.setDepartment(department);
+        System.out.println(person);
+        Person personClone = (Person) person.clone();
+        System.out.println(personClone);
+        byte[] serialize = SerializationUtils.serialize(person);
+        Person deserialize = (Person) SerializationUtils.deserialize(serialize);
+        System.out.println(deserialize);
     }
 }

@@ -1,5 +1,7 @@
 package com.hello.designPattern.PrototypePattern.registerPattern;
 
+import com.hello.designPattern.PrototypePattern.simplePattern.Prototype;
+
 import java.util.HashMap;
 import java.util.Map;
 

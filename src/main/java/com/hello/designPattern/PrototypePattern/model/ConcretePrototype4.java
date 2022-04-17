@@ -1,4 +1,4 @@
-package com.hello.designPattern.PrototypePattern.registerPattern;
+package com.hello.designPattern.PrototypePattern.model;
 
 public class ConcretePrototype4 implements Cloneable{
 
