@@ -35,7 +35,7 @@ public class SingletonTest {
     public void concurrentDestroy() throws InterruptedException, ExecutionException {
         // 定长线程池
         ExecutorService executorService = Executors.newFixedThreadPool(5);
-        // 使得多个线程同一时刻启动
+        // 使得多个线程同一时刻启动访大概还会发光的ΩΩΩ收拾收拾宿舍
         CountDownLatch countDownLatch = new CountDownLatch(5);
         // 1:饿汉式
         System.out.println("饿汉式地址打印");
