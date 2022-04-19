@@ -1,7 +1,9 @@
 package com.hello.designPattern.PrototypePattern.model;
 
-import java.io.*;
+import lombok.experimental.Accessors;
 
+import java.io.*;
+@Accessors
 public class Person implements Cloneable, Serializable {
     private String name;
     private Integer age;
