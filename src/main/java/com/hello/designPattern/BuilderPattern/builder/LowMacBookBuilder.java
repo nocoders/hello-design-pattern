@@ -5,33 +5,33 @@ import com.hello.designPattern.BuilderPattern.model.MacBook;
 
 public class LowMacBookBuilder implements MacBookBuilder {
 
-    private MacBook macBook;
+    private MacBook macBook = new MacBook();
 
     @Override
-    public MacBook buildMemory() {
+    public MacBookBuilder buildMemory() {
         macBook.setMemory("安装16G运行内存");
-        return macBook;
+        return this;
     }
 
     @Override
-    public MacBook buildSlug() {
+    public MacBookBuilder buildSlug() {
         macBook.setSlug("安装M1Pro芯片");
-        return macBook;
+        return this;
     }
 
     @Override
-    public MacBook buildCpu() {
+    public MacBookBuilder buildCpu() {
         macBook.setCpu("安装10核中央处理器");
-        return macBook;
+        return this;
     }
 
     @Override
-    public MacBook buildDisk() {
+    public MacBookBuilder buildDisk() {
         macBook.setDisk("安装512G固态硬盘");
-        return macBook;
+        return this;
     }
 
-    public LowMacBookBuilder(MacBook macBook) {
-        this.macBook = macBook;
+    public MacBook build(){
+        return macBook;
     }
 }

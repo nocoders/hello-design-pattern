@@ -5,8 +5,8 @@ import com.hello.designPattern.BuilderPattern.model.MacBook;
 
 public class HighMacBookBuilder implements MacBookBuilder {
 
-    private MacBook macBook;
-
+    private MacBook macBook = new MacBook();
+    
     @Override
     public MacBookBuilder buildMemory() {
         macBook.setMemory("安装32G运行内存");
@@ -27,11 +27,11 @@ public class HighMacBookBuilder implements MacBookBuilder {
 
     @Override
     public MacBookBuilder buildDisk() {
-        macBook.setDisk("1TB");
+        macBook.setDisk("安装1TB固态硬盘");
         return this;
     }
 
-    public HighMacBookBuilder(MacBook macBook) {
-        this.macBook = macBook;
+    public MacBook build(){
+        return macBook;
     }
 }

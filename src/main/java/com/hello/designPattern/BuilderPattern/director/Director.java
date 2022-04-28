@@ -10,7 +10,7 @@ public class Director {
         this.macBookBuilder = macBookBuilder;
     }
 
-    MacBook build(){
-        macBookBuilder.buildMemory()
+    public MacBook construct(){
+        return macBookBuilder.buildMemory().buildDisk().buildCpu().buildSlug().build();
     }
 }

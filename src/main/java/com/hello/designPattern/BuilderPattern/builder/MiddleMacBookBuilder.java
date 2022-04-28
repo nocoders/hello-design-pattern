@@ -7,30 +7,30 @@ public class MiddleMacBookBuilder implements MacBookBuilder {
     private MacBook macBook;
 
     @Override
-    public MacBook buildMemory() {
+    public MacBookBuilder buildMemory() {
         macBook.setMemory("安装16G运行内存");
-        return macBook;
+        return this;
     }
 
     @Override
-    public MacBook buildSlug() {
+    public MacBookBuilder buildSlug() {
         macBook.setSlug("安装M1Pro芯片");
-        return macBook;
+        return this;
     }
 
     @Override
-    public MacBook buildCpu() {
+    public MacBookBuilder buildCpu() {
         macBook.setCpu("安装10核中央处理器");
-        return macBook;
+        return this;
     }
 
     @Override
-    public MacBook buildDisk() {
+    public MacBookBuilder buildDisk() {
         macBook.setDisk("安装1TB固态硬盘");
-        return macBook;
+        return this;
     }
 
-    public MiddleMacBookBuilder(MacBook macBook) {
-        this.macBook = macBook;
+    public MacBook build(){
+        return macBook;
     }
 }
